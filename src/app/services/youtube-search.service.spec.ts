@@ -24,9 +24,14 @@ describe('YouTubeSearchService', () => {
     expect(service.getHeaders).toBeTruthy();
   });
 
+  it('should have getSearches method', () => {
+    expect(service.getSearches).toBeTruthy();
+  });
+
   it('should have insert method', () => {
     expect(service.insert).toBeTruthy();
   });
+  
   it('should have remove method', () => {
     expect(service.remove).toBeTruthy();
   });

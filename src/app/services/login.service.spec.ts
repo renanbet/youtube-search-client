@@ -1,8 +1,7 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-
 import { TestBed } from '@angular/core/testing';
-
 import { LoginService } from './login.service';
+
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment'
 
 describe('LoginService', () => {
@@ -22,6 +21,10 @@ describe('LoginService', () => {
 
   it('should have login method', () => {
     expect(service.login).toBeTruthy();
+  });
+
+  it('should have signup method', () => {
+    expect(service.signUp).toBeTruthy();
   });
 
   it('should have error method', () => {
