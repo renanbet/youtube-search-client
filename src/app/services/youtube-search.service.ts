@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { YouTubeSearch } from '../models/youtube-search.model';
+import { YouTubeSearchModel } from '../models/youtube-search.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +21,15 @@ export class YouTubeSearchService {
       })
     }
   }
-  getSearches(): Observable<YouTubeSearch[]> {
-    return this.http.get<YouTubeSearch[]>(`${this.apiUrl}/search`, this.getHeaders())
+  getSearches(): Observable<YouTubeSearchModel[]> {
+    return this.http.get<YouTubeSearchModel[]>(`${this.apiUrl}/search`, this.getHeaders())
       .pipe(
         catchError(this.error))
   }
 
   insert(data): Observable<any> {
     let API_URL = `${this.apiUrl}/search`;
-    return this.http.post<YouTubeSearch>(API_URL, data, this.getHeaders())
+    return this.http.post<YouTubeSearchModel>(API_URL, data, this.getHeaders())
       .pipe(
         catchError(this.error)
       )
@@ -37,7 +37,7 @@ export class YouTubeSearchService {
 
   remove(id): Observable<any> {
     let API_URL = `${this.apiUrl}/search/${id}`;
-    return this.http.delete<YouTubeSearch>(API_URL, this.getHeaders()).pipe(
+    return this.http.delete<YouTubeSearchModel>(API_URL, this.getHeaders()).pipe(
       catchError(this.error)
     )
   }

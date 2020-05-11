@@ -1,19 +1,57 @@
 <div class="card">
-    <div class="card-content">
-        <div class="content">
-            <div class="columns header">
-                <div class="column header-title">
-                    <b>{{title}}</b>
-                    <button id="back" class="button back is-pulled-right" (click)="back()">
-                        <span class="icon">
-                            <i class="fas fa-1x fa-arrow-left"></i>
-                        </span>
-                    </button>
-                </div>
-            </div>
-            <div class="buttons" [ngClass]="{'is-loading': loading}" (click)="remove()">
-                <button class="button is-danger">Excluir</button>
-            </div>
-        </div>
+  <div class="card-content">
+    <div class="content">
+      <button id="back" class="button back is-pulled-right" (click)="back()">
+        <span class="icon">
+          <i class="fas fa-1x fa-arrow-left"></i>
+        </span>
+      </button>
+      <p>
+        <b>Busca:</b>&nbsp;{{details.text}}
+      </p>
+      <p>
+        <b>Total de dias para assisir:</b>&nbsp;{{details.daysLong}} dias
+      </p>
+      <p>
+        <b>Palavras chave:</b>&nbsp;{{getTopWords()}}
+      </p>
     </div>
+  </div>
 </div>
+<br />
+<div class="card">
+  <div class="card-content">
+    <div class="content">
+      <p class="card-header-title">
+        Vídeos
+      </p>
+      <table class="table">
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>{{getTotalMinutes()}} Minutos</td>
+            <td></td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr *ngFor="let video of videos; index as i;"
+            [ngClass]="{'gray': i % 2 == 0}">
+            <td>{{i+1}}</td>
+            <td>{{formatTitle(video.title)}}</td>
+            <td>{{video.minutes}} minutos</td>
+            <td>
+              <a href="https://www.youtube.com/watch?v={{video.id}}" target="_blank">
+                <span class="icon is-large">
+                  <i class="fas fa-play"></i>
+                </span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<br />
+<br />

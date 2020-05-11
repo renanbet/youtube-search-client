@@ -4,7 +4,7 @@
     </app-schedule>
 
     <ng-template #elseBlock>
-        <div class="card" (click)="toggleSchedule()">
+        <div *ngIf="!details" class="card" (click)="toggleSchedule()">
             <div class="schedule">
                 <ul class="weekdays">
                     <li>Dom</li>
@@ -48,15 +48,16 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let youTubeSearch of showYouTubeSearches; index as i;" (click)="showDetails(youTubeSearch)">
-                                        <td [title]="youTubeSearch.status" style="width: 5px">
+                                    <tr *ngFor="let youTubeSearch of searches; index as i;"
+                                        (click)="showDetails(youTubeSearch)">
+                                        <td style="width: 5px">
                                             <span class="icon">
                                                 <i class="fas" [ngClass]="{'fa-check': isConcluded(youTubeSearch),
-                                            'fa-ban': isLoading(youTubeSearch)}"></i>
+                                            'fa-spinner': isLoading(youTubeSearch)}"></i>
                                             </span>
                                         </td>
                                         <td>{{youTubeSearch.text}}</td>
-                                        <td>{{youTubeSearch.date}}</td>
+                                        <td>{{formatSearchDate(youTubeSearch.date)}}</td>
                                         <td>{{youTubeSearch.daysLong}}</td>
                                     </tr>
                                 </tbody>
@@ -67,7 +68,7 @@
             </div>
         </div>
     </ng-template>
-    <app-youtube-search-details (close)="closeDetails($event)" *ngIf="details" [details]="details"></app-youtube-search-details>
+    <app-youtube-search-details (close)="closeDetails()" *ngIf="details" [details]="details"></app-youtube-search-details>
 </div>
 <nav class="navbar nav-bottom is-fixed-bottom">
     <div class="navbar-brand">

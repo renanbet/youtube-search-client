@@ -1,11 +1,5 @@
-.header {
-    border-bottom: solid 1px #DADADA;
-    .header-title {
-        margin-bottom: 3px;
-        button {
-            margin-top: -5px;
-        }
-    }
+.card {
+    background-color: #FFFFFF;
 }
 .btn-fixed {
     bottom: 60px;
@@ -17,4 +11,7 @@
         height: 70px;
         border-radius: 50%;
     }
+}
+.gray {
+    background-color: #EDEDEE
 }

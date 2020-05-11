@@ -13,6 +13,7 @@ import { YouTubeSearchDetailsComponent } from './components/youtube-search/youtu
 import { LoginService } from './services/login.service'
 import { YouTubeSearchService } from './services/youtube-search.service'
 import { ScheduleService } from './services/schedule.service'
+import { VideoService } from './services/video.service'
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -47,7 +48,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component'
       utilitiesReducer
     })
   ],
-  providers: [LoginService, YouTubeSearchService, ScheduleService,
+  providers: [LoginService, YouTubeSearchService, ScheduleService, VideoService,
   { provide: 'API_URL', useValue: environment.apiUrl }],
   bootstrap: [AppComponent]
 })

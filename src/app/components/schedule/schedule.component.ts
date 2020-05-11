@@ -11,6 +11,7 @@ export class ScheduleComponent implements OnInit {
   @Output() close = new EventEmitter<ScheduleModel>()
   @Input() currentSchedule:ScheduleModel
   public schedule: ScheduleModel = {
+    _id: '',
     sunday: null,
     monday: null,
     tuesday: null,

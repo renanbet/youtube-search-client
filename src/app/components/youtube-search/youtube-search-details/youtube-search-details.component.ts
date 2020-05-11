@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { YouTubeSearchService } from 'src/app/services/youtube-search.service';
-import { YouTubeSearch } from 'src/app/models/youtube-search.model';
+import { VideoService } from 'src/app/services/video.service';
+import { YouTubeSearchModel } from 'src/app/models/youtube-search.model';
+import { VideoModel } from 'src/app/models/video.model';
 import { Store } from '@ngrx/store';
 import { showToast } from 'src/app/reducers/utilities';
 import { Toast } from 'src/app/models/toast.model'
@@ -12,20 +13,34 @@ import { ToastType } from 'src/app/models/toast-type.model';
   styleUrls: ['./youtube-search-details.component.scss']
 })
 export class YouTubeSearchDetailsComponent implements OnInit {
-  @Output() close = new EventEmitter<boolean>();
-  @Input() details: YouTubeSearch
+  @Output() close = new EventEmitter();
+  @Input() details: YouTubeSearchModel
 
   public loading = false
-  public title = 'Busca'
+  public title = ''
+  public videos = []
 
   constructor(
-    private youTubeSearchService: YouTubeSearchService,
+    private videoService: VideoService,
     private store:Store) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.title = this.details.text
+    this.videoService.getVideos(this.details._id)
+    .subscribe((videos: VideoModel[]) => {
+      this.videos = videos
+    })
+    console.log(this.details)
+  }
+
+  getTopWords() {
+    return this.details.words.map(item => {
+      return item[0]
+    }).join(', ')
+  }
 
   back () {
-    this.close.next(false)
+    this.close.next()
   }
 
   isAdmin() {
@@ -33,7 +48,17 @@ export class YouTubeSearchDetailsComponent implements OnInit {
     return user.role === 'admin'
   }
 
-  remove() {
-    
+  getTotalMinutes() {
+    return this.videos.map(item => {
+      return item.minutes
+    }).reduce((a, b) => {
+      return a + b
+    }, 0)
+  }
+
+  formatTitle(title) {
+    if (!title)
+      return ''
+    return title.length <= 50 ? title : `${title.substring(0, 50)}...`
   }
 }

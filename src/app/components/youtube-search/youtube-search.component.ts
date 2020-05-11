@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { YouTubeSearchService } from 'src/app/services/youtube-search.service';
-import { YouTubeSearch } from 'src/app/models/youtube-search.model';
+import { YouTubeSearchModel } from 'src/app/models/youtube-search.model';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { SearchModel } from 'src/app/models/search.model'
 import { ScheduleModel } from 'src/app/models/schedule.model';
 import { ScheduleService } from 'src/app/services/schedule.service';
+import { showToast } from 'src/app/reducers/utilities';
+import { Toast } from 'src/app/models/toast.model'
+import { ToastType } from 'src/app/models/toast-type.model';
 
 @Component({
   selector: 'app-youtube-search',
@@ -14,19 +17,37 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 })
 export class YouTubeSearchComponent implements OnInit {
   public searches = []
-  public showYouTubeSearches = []
-  public schedule: ScheduleModel
-  public details: YouTubeSearch = null
+  public schedule: ScheduleModel = {
+    _id: '',
+    sunday: 0,
+    monday: 0,
+    tuesday: 0,
+    wednesday: 0,
+    thursday: 0,
+    friday: 0,
+    saturday: 0
+  }
+  public details: YouTubeSearchModel = null
   public search$: Observable<any>
   public showSchedule:boolean = false
 
   constructor(private YouTubeSearchService: YouTubeSearchService,
               private scheduleService: ScheduleService,
-              private store: Store<{searchReducer}>) {
-                this.store.pipe(
+              private store: Store,
+              private searchStore: Store<{searchReducer}>,
+              private utilitiesReducer: Store<{utilitiesReducer}>) {
+                this.searchStore.pipe(
                   select('searchReducer')).subscribe((data:SearchModel) => {
                     if (data.search !== undefined) {
-                      // todo search
+                      if (!this.schedule || !this.schedule._id) {
+                        let toast = new Toast('É necessário cadastrar uma agenda',
+                          new ToastType().error)
+                        this.store.dispatch(new showToast(toast))
+                      } else if (data.search.length > 3) {
+                        this.closeDetails()
+                        this.closeSchedule(null)
+                        // this.addYouTubeSearch(data.search)
+                      }
                     }
                   })
               }
@@ -34,6 +55,34 @@ export class YouTubeSearchComponent implements OnInit {
   ngOnInit(): void {
     this.load()
     this.loadSchedule()
+  }
+
+  addYouTubeSearch(text): void {
+    this.YouTubeSearchService.insert({text})
+    .subscribe((search: YouTubeSearchModel) => {
+      let newSearch = {
+        id: search._id,
+        text,
+        date: search.date,
+        daysLong: 0,
+        words: []
+      }
+      this.searches.push(newSearch)
+    })
+  }
+
+  formattedSearches() {
+    return this.searches.map(item => {
+      item.date = this.formatSearchDate(item.date)
+      return item
+    })
+  }
+
+  formatSearchDate(date) {
+    let split = date.split('.')[0].split('T')
+    let dateSplit = split[0].split('-')
+    let time = split[1]
+    return `${dateSplit[2]}/${dateSplit[1]}/${dateSplit[0]}`
   }
 
   loadSchedule(): void {
@@ -48,14 +97,19 @@ export class YouTubeSearchComponent implements OnInit {
 
   load() {
     this.YouTubeSearchService.getSearches()
-    .subscribe((youTubeSearch: YouTubeSearch[]) => {
-      this.searches = youTubeSearch.map(item => {
-      })
+    .subscribe((youTubeSearch: YouTubeSearchModel[]) => {
+      this.searches = youTubeSearch
     })
   }
 
   showDetails(item): void {
-    this.details = item
+    if (this.isLoading(item)) {
+      let toast = new Toast('Aguarde concluir a busca',
+                          new ToastType().info)
+                        this.store.dispatch(new showToast(toast))
+    } else {
+      this.details = item
+    }
   }
 
   closeSchedule(schedule): void {
@@ -69,18 +123,15 @@ export class YouTubeSearchComponent implements OnInit {
     this.showSchedule = true
   }
 
-  closeDetails(data): void {
-    if (data) {
-      this.load()
-    }
+  closeDetails(): void {
     this.details = null
   }
 
   isConcluded(item) {
-
+    return item.daysLong > 0
   }
 
   isLoading(item) {
-    
+    return item.daysLong === 0
   }
 }

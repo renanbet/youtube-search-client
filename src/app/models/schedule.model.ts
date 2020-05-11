@@ -1,4 +1,5 @@
 export class ScheduleModel {
+    _id: string
     sunday: Number
     monday: Number
     tuesday: Number
