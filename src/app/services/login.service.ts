@@ -20,6 +20,14 @@ export class LoginService {
       )
   }
 
+  signUp(username, password): Observable<any> {
+    let API_URL = `${this.apiUrl}/auth/signup`;
+    return this.http.post(API_URL, { username, password })
+      .pipe(
+        catchError(this.error)
+      )
+  }
+
   error(error: HttpErrorResponse) {
     console.log(error);
     return throwError(error);

@@ -51,14 +51,15 @@
                                     <tr *ngFor="let youTubeSearch of searches; index as i;"
                                         (click)="showDetails(youTubeSearch)">
                                         <td style="width: 5px">
-                                            <span class="icon">
+                                            <span class="icon"
+                                            [ngClass]="{'rotate': isLoading(youTubeSearch)}">
                                                 <i class="fas" [ngClass]="{'fa-check': isConcluded(youTubeSearch),
                                             'fa-spinner': isLoading(youTubeSearch)}"></i>
                                             </span>
                                         </td>
                                         <td>{{youTubeSearch.text}}</td>
                                         <td>{{formatSearchDate(youTubeSearch.date)}}</td>
-                                        <td>{{youTubeSearch.daysLong}}</td>
+                                        <td>{{formatDaysLong(youTubeSearch.daysLong)}}</td>
                                     </tr>
                                 </tbody>
                             </table>

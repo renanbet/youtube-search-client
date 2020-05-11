@@ -7,7 +7,7 @@
                     <label class="label">Login</label>
                     <div class="control has-icons-left has-icons-right">
                         <input
-                            (keyup.enter)="login()"
+                            (keyup.enter)="enter()"
                             [(ngModel)]="username"
                             class="input login"
                             [ngClass]="{'is-danger': error}"
@@ -23,7 +23,7 @@
                     <label class="label">Senha</label>
                     <div class="control has-icons-left has-icons-right">
                         <input
-                            (keyup.enter)="login()"
+                            (keyup.enter)="enter()"
                             [(ngModel)]="password"
                             type="password"
                             class="input password"
@@ -35,11 +35,19 @@
                     </div>
                     <p class="help is-danger" *ngIf="error">Login ou senha inválidos</p>
                 </div>
-                <div class="field">
+                <div *ngIf="isLogin" class="field">
                     <div class="control">
                         <button [disabled]="showLoading" [ngClass]="{'is-loading': showLoading}" (click)="login()" class="btn-login button primary-button">Entrar</button>
                     </div>
                 </div>
+                <div *ngIf="!isLogin" class="field">
+                    <div class="control">
+                        <button [disabled]="showLoading" [ngClass]="{'is-loading': showLoading}" (click)="signUp()" class="btn-login button primary-button">Cadastrar</button>
+                    </div>
+                </div>
+                <a href="#" *ngIf="isLogin" (click)="showSignup()" class="is-pulled-right">Cadastre-se</a>
+                <a href="#" *ngIf="!isLogin" (click)="showLogin()" class="is-pulled-right">Já tenho login</a>
+                <br/>
             </div>
         </div>
     </div>

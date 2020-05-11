@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   password: string = '';
   error: boolean = false;
   showLoading: boolean = false
+  isLogin: boolean = true
 
   constructor(private router: Router,
     private loginService: LoginService,
@@ -45,5 +46,39 @@ export class LoginComponent implements OnInit {
         this.error = true
         this.store.dispatch(new hideLoading())
       })
+  }
+
+  signUp() {
+    this.store.dispatch(new showLoading())
+    this.loginService.signUp(this.username, this.password)
+      .subscribe((data) => {
+        let message = 'Cadastro realizado'
+        let toast = new Toast(message, new ToastType().success)
+        this.store.dispatch(new showToast(toast))
+        this.store.dispatch(new hideLoading())
+        this.isLogin = true
+      }, (err) => {
+        let message = err.error.error ? err.error.error : 'Ocorreu um erro inesperado.'
+        let toast = new Toast(message, new ToastType().error)
+        this.store.dispatch(new showToast(toast))
+        this.error = true
+        this.store.dispatch(new hideLoading())
+      })
+  }
+
+  enter() {
+    if (this.isLogin) {
+      this.login()
+    } else {
+      this.signUp()
+    }
+  }
+
+  showSignup() {
+    this.isLogin = false
+  }
+
+  showLogin() {
+    this.isLogin = true
   }
 }

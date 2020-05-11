@@ -46,7 +46,7 @@ export class YouTubeSearchComponent implements OnInit {
                       } else if (data.search.length > 3) {
                         this.closeDetails()
                         this.closeSchedule(null)
-                        // this.addYouTubeSearch(data.search)
+                        this.addYouTubeSearch(data.search)
                       }
                     }
                   })
@@ -68,6 +68,9 @@ export class YouTubeSearchComponent implements OnInit {
         words: []
       }
       this.searches.push(newSearch)
+      setTimeout(() => {
+        this.load()
+      }, 50000)
     })
   }
 
@@ -133,5 +136,9 @@ export class YouTubeSearchComponent implements OnInit {
 
   isLoading(item) {
     return item.daysLong === 0
+  }
+
+  formatDaysLong(daysLong) {
+    return daysLong ? `${daysLong} dias` : ''
   }
 }
