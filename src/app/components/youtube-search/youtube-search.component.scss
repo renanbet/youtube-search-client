@@ -1,0 +1,123 @@
+@import '../../../assets/vars';
+
+.container {
+    .card {
+        border: 1px solid $border;
+        border-radius: 3px;
+    }
+    .filter {
+        cursor: pointer;
+    }
+    background-color: $background;
+    height: 100vh;
+    overflow-y: scroll;
+    padding-bottom: 50px;
+    @media (min-width: 1024px){
+        padding-top: 70px;
+    }
+    @media (max-width: 1023px){
+        padding-top: 115px;
+    }
+
+    .btn-fixed {
+        bottom: 60px;
+        right: 50px;
+        position: fixed;
+        display:block;
+        .button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+    }
+    table {
+        tbody {
+            tr {
+                &:hover {
+                    background-color: #EBEBEB;
+                    cursor: pointer;
+                }
+                td {
+                    padding: 15px;
+                }
+            }
+        }
+    }
+    .schedule {
+        cursor: pointer;
+        ul {list-style-type: none;}
+        /* Month header */
+        .month {
+        width: 100%;
+        background: $background-primary;
+        text-align: center;
+        }
+
+        /* Month list */
+        .month ul {
+        margin: 0;
+        padding: 0;
+        }
+
+        .month ul li {
+        color: white;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        }
+
+        /* Previous button inside month header */
+        .month .prev {
+        float: left;
+        padding-top: 10px;
+        }
+
+        /* Next button */
+        .month .next {
+        float: right;
+        padding-top: 10px;
+        }
+
+        /* Weekdays (Mon-Sun) */
+        .weekdays {
+        margin: 0;
+        padding: 10px 0;
+        background-color:#ddd;
+        }
+
+        .weekdays li {
+        display: inline-block;
+        width: 13.6%;
+        color: #666;
+        text-align: center;
+        }
+
+        /* Days (1-31) */
+        .days {
+        padding: 10px 0;
+        background: #eee;
+        margin: 0;
+        }
+
+        .days li {
+        list-style-type: none;
+        display: inline-block;
+        width: 13.6%;
+        text-align: center;
+        margin-bottom: 5px;
+        font-size:12px;
+        color: #777;
+        }
+
+        /* Highlight the "current" day */
+        .days li .active {
+        padding: 5px;
+        background: #1abc9c;
+        color: white !important
+        }
+    }
+}
+.nav-bottom {
+    border-top: 1px solid $border;
+    height: 40px;
+}

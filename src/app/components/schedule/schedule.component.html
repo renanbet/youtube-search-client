@@ -1,0 +1,91 @@
+<div class="card">
+    <div class="card-content">
+        <div class="content">
+            <div class="columns header">
+                <div class="column header-title">
+                    <b>Agenda</b>
+                    <button id="back" class="button back is-pulled-right" (click)="back()">
+                        <span class="icon">
+                            <i class="fas fa-1x fa-arrow-left"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Domingo</label>
+                        <div class="control">
+                            <input [(ngModel)]="schedule.sunday" class="input" type="number" placeholder="Tempo em minutos">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Segunda-feira</label>
+                        <div class="control">
+                            <input [(ngModel)]="schedule.monday" class="input" type="number" placeholder="Tempo em minutos">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Terça-feira</label>
+                        <div class="control">
+                            <input [(ngModel)]="schedule.tuesday" class="input" type="number"
+                                placeholder="Tempo em minutos">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Quarta-feira</label>
+                        <div class="control">
+                            <input [(ngModel)]="schedule.wednesday" class="input" type="number"
+                                placeholder="Tempo em minutos">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Quinta-deira</label>
+                        <div class="control">
+                            <input [(ngModel)]="schedule.thursday" class="input" type="number"
+                                placeholder="Tempo em minutos">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Sexta-feira</label>
+                        <div class="control">
+                            <input [(ngModel)]="schedule.friday" class="input" type="number" placeholder="Tempo em minutos">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Sábado</label>
+                        <div class="control">
+                            <input [(ngModel)]="schedule.saturday" class="input" type="number"
+                                placeholder="Tempo em minutos">
+                        </div>
+                    </div>
+                </div>
+                <div class="column"></div>
+                <div class="column"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="buttons btn-fixed">
+    <button id="update" (click)="save()" class="button is-primary">
+        <span class="icon is-large">
+            <i class="fas fa-2x fa-check"></i>
+        </span>
+    </button>
+</div>

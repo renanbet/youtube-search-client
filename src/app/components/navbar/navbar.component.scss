@@ -1,0 +1,28 @@
+@import '../../../assets/vars';
+
+.navbar {
+    .navbar-title {
+        &:hover {
+            color: #4a4a4a;
+            cursor: default;
+        }
+    }
+    border-bottom: 1px solid $border;
+    .navbar-start {
+        width: 100%;
+        @media (min-width: 1024px) {
+            padding: 6px 20% 0 20%;
+        }
+        @media (max-width: 1023px) {
+            padding: 0 0 10px 0;
+        }
+
+        .btn-search {
+            cursor: pointer;
+        }
+    }
+    .menu-options {
+        border: 0px;
+        margin-top: 6px;
+    }
+}

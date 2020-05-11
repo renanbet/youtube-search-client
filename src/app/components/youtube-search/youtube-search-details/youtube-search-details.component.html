@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-content">
+        <div class="content">
+            <div class="columns header">
+                <div class="column header-title">
+                    <b>{{title}}</b>
+                    <button id="back" class="button back is-pulled-right" (click)="back()">
+                        <span class="icon">
+                            <i class="fas fa-1x fa-arrow-left"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="buttons" [ngClass]="{'is-loading': loading}" (click)="remove()">
+                <button class="button is-danger">Excluir</button>
+            </div>
+        </div>
+    </div>
+</div>

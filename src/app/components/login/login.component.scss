@@ -1,0 +1,25 @@
+@import '../../../assets/vars';
+
+.container {
+    .system-title {
+        color: #393939;
+        margin-bottom: 30px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    background-color: $background-primary;
+    height: 100vh;
+    .card {
+        border-radius: 20px;
+        width: 350px;
+        background: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+
+        .btn-login {
+            width: 100%;
+        }
+    }
+}

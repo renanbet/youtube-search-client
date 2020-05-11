@@ -1,0 +1,46 @@
+<div class="container is-fluid">
+    <div class="card">
+        <div class="card-content">
+            <div class="content">
+                <div class="system-title">YouTube Search</div>
+                <div class="field">
+                    <label class="label">Login</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input
+                            (keyup.enter)="login()"
+                            [(ngModel)]="username"
+                            class="input login"
+                            [ngClass]="{'is-danger': error}"
+                            type="text"
+                            placeholder="Login">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                    <p class="help is-danger" *ngIf="error">Login ou senha inválidos</p>
+                </div>
+                <div class="field">
+                    <label class="label">Senha</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input
+                            (keyup.enter)="login()"
+                            [(ngModel)]="password"
+                            type="password"
+                            class="input password"
+                            [ngClass]="{'is-danger': error}"
+                            placeholder="Senha">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                    <p class="help is-danger" *ngIf="error">Login ou senha inválidos</p>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button [disabled]="showLoading" [ngClass]="{'is-loading': showLoading}" (click)="login()" class="btn-login button primary-button">Entrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
