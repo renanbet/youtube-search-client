@@ -2,10 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VideoService } from 'src/app/services/video.service';
 import { YouTubeSearchModel } from 'src/app/models/youtube-search.model';
 import { VideoModel } from 'src/app/models/video.model';
-import { Store } from '@ngrx/store';
-import { showToast } from 'src/app/reducers/utilities';
-import { Toast } from 'src/app/models/toast.model'
-import { ToastType } from 'src/app/models/toast-type.model';
 
 @Component({
   selector: 'app-youtube-search-details',
@@ -14,23 +10,29 @@ import { ToastType } from 'src/app/models/toast-type.model';
 })
 export class YouTubeSearchDetailsComponent implements OnInit {
   @Output() close = new EventEmitter();
-  @Input() details: YouTubeSearchModel
+  @Input() details: YouTubeSearchModel = {
+    _id: '',
+    text: '',
+    date: null,
+    daysLong: 0,
+    words: []
+  }
 
   public loading = false
   public title = ''
   public videos = []
 
   constructor(
-    private videoService: VideoService,
-    private store:Store) { }
+    private videoService: VideoService) { }
 
   ngOnInit(): void {
-    this.title = this.details.text
-    this.videoService.getVideos(this.details._id)
-    .subscribe((videos: VideoModel[]) => {
-      this.videos = videos
-    })
-    console.log(this.details)
+    this.title = this.details && this.details.text ? this.details.text : ''
+    if (this.details && this.details._id) {
+      this.videoService.getVideos(this.details._id)
+      .subscribe((videos: VideoModel[]) => {
+        this.videos = videos
+      })
+    }
   }
 
   getTopWords() {

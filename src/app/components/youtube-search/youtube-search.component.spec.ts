@@ -62,4 +62,44 @@ describe('YouTubeSearchComponent', () => {
   it('should have closeDetails method', () => {
     expect(component.closeDetails).toBeTruthy();
   });
+
+  it('should have addYouTubeSearch method', () => {
+    expect(component.addYouTubeSearch).toBeTruthy();
+  });
+
+  it('should have formatSearchDate method', () => {
+    expect(component.formatSearchDate).toBeTruthy();
+  });
+
+  it('should have loadSchedule method', () => {
+    expect(component.loadSchedule).toBeTruthy();
+  });
+
+  it('should have load method', () => {
+    expect(component.load).toBeTruthy();
+  });
+
+  it('should have closeSchedule method', () => {
+    expect(component.closeSchedule).toBeTruthy();
+  });
+
+  it('should have toggleSchedule method', () => {
+    expect(component.toggleSchedule).toBeTruthy();
+  });
+
+  it('should have closeDetails method', () => {
+    expect(component.closeDetails).toBeTruthy();
+  });
+
+  it('should have isConcluded method', () => {
+    expect(component.isConcluded).toBeTruthy();
+  });
+
+  it('should have isLoading method', () => {
+    expect(component.isLoading).toBeTruthy();
+  });
+
+  it('should have formatDaysLong method', () => {
+    expect(component.formatDaysLong).toBeTruthy();
+  });
 });

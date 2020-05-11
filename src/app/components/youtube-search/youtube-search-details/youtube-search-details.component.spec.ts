@@ -3,6 +3,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { YouTubeSearchDetailsComponent } from './youtube-search-details.component';
 
+import { StoreModule } from '@ngrx/store';
+import { reducer as utilitiesReducer } from 'src/app/reducers/utilities'
+
 import { environment } from '../../../../environments/environment';
 
 describe('YouTubeSearchDetailsComponent', () => {
@@ -12,7 +15,10 @@ describe('YouTubeSearchDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ YouTubeSearchDetailsComponent ],
-      imports: [ HttpClientTestingModule ],
+      imports: [ HttpClientTestingModule,
+        StoreModule.forRoot({
+          utilitiesReducer
+        }) ],
       providers: [ { provide: 'API_URL', useValue: environment.apiUrl } ]
     })
     .compileComponents();

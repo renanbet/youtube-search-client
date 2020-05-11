@@ -74,13 +74,6 @@ export class YouTubeSearchComponent implements OnInit {
     })
   }
 
-  formattedSearches() {
-    return this.searches.map(item => {
-      item.date = this.formatSearchDate(item.date)
-      return item
-    })
-  }
-
   formatSearchDate(date) {
     let split = date.split('.')[0].split('T')
     let dateSplit = split[0].split('-')
