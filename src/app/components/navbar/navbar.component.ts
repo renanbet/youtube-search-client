@@ -30,10 +30,4 @@ export class NavbarComponent implements OnInit {
   async globalSearch() {
     this.store.dispatch(new setSearch(this.search))
   }
-
-  cleanGlobalSearch () {
-    if (this.search === '') {
-      this.globalSearch()
-    }
-  }
 }

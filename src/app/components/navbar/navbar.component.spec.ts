@@ -63,10 +63,6 @@ describe('NavbarComponent', () => {
     expect(component.globalSearch).toBeTruthy();
   });
 
-  it('should have cleanGlobalSearch method', () => {
-    expect(component.cleanGlobalSearch).toBeTruthy();
-  });
-
   it('should have menu button', () => {
     let compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.button > span > i')).toHaveClass('fa-bars');

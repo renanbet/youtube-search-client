@@ -39,6 +39,7 @@ export class YouTubeSearchComponent implements OnInit {
                 this.searchStore.pipe(
                   select('searchReducer')).subscribe((data:SearchModel) => {
                     if (data.search !== undefined) {
+                      debugger
                       if (!this.schedule || !this.schedule._id) {
                         let toast = new Toast('É necessário cadastrar uma agenda',
                           new ToastType().error)

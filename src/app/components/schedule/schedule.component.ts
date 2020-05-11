@@ -34,8 +34,8 @@ export class ScheduleComponent implements OnInit {
   }
 
   save(): void {
-    this.scheduleService.insert(this.schedule).subscribe(() => {
-      this.close.next(this.schedule)
+    this.scheduleService.insert(this.schedule).subscribe((data) => {
+      this.close.next(data)
     });
   }
 }
