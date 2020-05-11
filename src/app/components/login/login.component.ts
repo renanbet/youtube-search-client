@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(new showLoading())
     this.loginService.login(this.username, this.password)
       .subscribe((data) => {
+        this.store.dispatch(new hideLoading())
         localStorage.setItem('user', JSON.stringify(data.data));
         this.router.navigate(['/youtubesearch']);
       }, (err) => {
@@ -55,8 +56,7 @@ export class LoginComponent implements OnInit {
         let message = 'Cadastro realizado'
         let toast = new Toast(message, new ToastType().success)
         this.store.dispatch(new showToast(toast))
-        this.store.dispatch(new hideLoading())
-        this.isLogin = true
+        this.login()
       }, (err) => {
         let message = err.error.error ? err.error.error : 'Ocorreu um erro inesperado.'
         let toast = new Toast(message, new ToastType().error)
