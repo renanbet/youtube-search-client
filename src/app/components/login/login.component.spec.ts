@@ -50,6 +50,22 @@ describe('LoginComponent', () => {
     expect(component.login).toBeTruthy();
   });
 
+  it('should have enter method', () => {
+    expect(component.enter).toBeTruthy();
+  });
+
+  it('should have signUp method', () => {
+    expect(component.signUp).toBeTruthy();
+  });
+
+  it('should have showSignup method', () => {
+    expect(component.showSignup).toBeTruthy();
+  });
+
+  it('should have showLogin method', () => {
+    expect(component.showLogin).toBeTruthy();
+  });
+
   it('should have title', () => {
     let compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.system-title').innerHTML).toMatch('YouTube Search');
