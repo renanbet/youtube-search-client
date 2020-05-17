@@ -1,14 +1,13 @@
-# youtube-search-client
+# Youtube search client
 
-## Instruções em
+## More instructions
 
 https://github.com/renanbet/youtube-search-compose
 
 
+## The app
 
-## O app
-
-- Angular
-- Framework do angular para desenvolvimento @angular/cli
-- Testes unitários com o Karma e Jasmine
-- Controle de estados ngRx
+- Angular 9
+- Create with @angular/cli
+- Unit tests with Karma and Jasmine
+- Application state control with ngRx
